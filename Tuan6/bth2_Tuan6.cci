@@ -1,0 +1,9 @@
+VERSION:3 SOURCE_TIMESTAMP:5D443729
+NODE:I LEVEL:0 LINE:1 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\io.h"
+NODE:I LEVEL:0 LINE:2 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\alcd.h"
+NODE:I LEVEL:0 LINE:3 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:M LEVEL:0 LINE:5 "LCD_BL"
+NODE:V LEVEL:0 LINE:7 "keypad -> RAM:????"
+NODE:C LEVEL:0 LINE:13 "key_chars -> RAM:????"
+NODE:F LEVEL:0 LINE:25 "scan_key_index(void)"
+NODE:F LEVEL:0 LINE:59 "main(void)"

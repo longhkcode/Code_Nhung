@@ -1,0 +1,12 @@
+VERSION:3 SOURCE_TIMESTAMP:5D3B3733
+NODE:I LEVEL:0 LINE:2 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\mega128.h"
+NODE:I LEVEL:0 LINE:3 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:M LEVEL:0 LINE:5 "bt1"
+NODE:M LEVEL:0 LINE:6 "bt2"
+NODE:M LEVEL:0 LINE:7 "bt3"
+NODE:M LEVEL:0 LINE:9 "led_R"
+NODE:M LEVEL:0 LINE:10 "led_G"
+NODE:M LEVEL:0 LINE:11 "led_B"
+NODE:F LEVEL:0 LINE:12 "io_init(void)"
+NODE:F LEVEL:0 LINE:18 "ledOff(void)"
+NODE:F LEVEL:0 LINE:23 "main(void)"

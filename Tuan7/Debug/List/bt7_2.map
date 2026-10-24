@@ -1,0 +1,43 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+buf                                                                               0x0545      17
+_base_y                                                                           0x0556       4
+_lcd_y                                                                            0x055A       1
+_lcd_maxx                                                                         0x055B       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+threshold_ee                                                                      0x0000       2
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+current_adc                                                                       R4,R5        2
+adc_dark                                                                          R6,R7        2
+adc_light                                                                         R8,R9        2
+threshold                                                                         R10,R11      2
+count                                                                             R13          1
+auto_mode                                                                         R2.0      1bit
+_lcd_x                                                                            R12          1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+read_adc                                                                          0x000CC     16
+role_off                                                                          0x000DC      5
+role_on                                                                           0x000E1     13
+main                                                                              0x000EE    168
+put_buff_G100                                                                     0x00196     64
+_print_G100                                                                       0x001D6    308
+sprintf                                                                           0x0030A     52
+_lcd_write_nibble_G101                                                            0x0033E     37
+_lcd_write_data                                                                   0x00363     12
+lcd_gotoxy                                                                        0x0036F     15
+lcd_clear                                                                         0x0037E     13
+lcd_putchar                                                                       0x0038B     26
+lcd_puts                                                                          0x003A5     17
+lcd_init                                                                          0x003B6     46
+strlen                                                                            0x003E4     12
+strlenf                                                                           0x003F0     13

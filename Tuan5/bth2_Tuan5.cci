@@ -1,0 +1,8 @@
+VERSION:3 SOURCE_TIMESTAMP:5D43B8F9
+NODE:I LEVEL:0 LINE:1 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\io.h"
+NODE:I LEVEL:0 LINE:2 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\glcd.h"
+NODE:I LEVEL:0 LINE:3 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:I LEVEL:0 LINE:4 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\font5x7.h"
+NODE:C LEVEL:0 LINE:6 "font8x10_VN -> FLASH"
+NODE:F LEVEL:0 LINE:14 "draw_char8x10(unsigned char x,unsigned char y,flash unsigned char * char_map)"
+NODE:F LEVEL:0 LINE:25 "main(void)"

@@ -1,0 +1,17 @@
+/*
+ * bt8_1.c
+ *
+ * Created: 10/10/2026 10:57:08 AM
+ * Author: Admin
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}

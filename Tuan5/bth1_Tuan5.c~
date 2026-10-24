@@ -1,0 +1,75 @@
+#include <io.h>
+#include <glcd.h>
+#include <alcd.h> // Thu vien LCD 16x2
+#include <delay.h>
+#include <stdio.h>
+#include <font5x7.h>
+
+#define BT1 PINB.0
+#define BT2 PINB.1
+#define BT3 PINB.2
+
+unsigned char bias = 1;
+unsigned char temp_coef = 40;
+unsigned char vlcd = 50;
+
+// Ham cap nhat hien thi len LCD 16x2
+void display_lcd(void) {
+    char buf[17];
+    lcd_clear();
+    
+    // Dong 1: Hien thi Bias va Temp
+    lcd_gotoxy(0, 0);
+    sprintf(buf, "B:%d  Temp:%d", bias, temp_coef);
+    lcd_puts(buf);
+    
+    // Dong 2: Hien thi Vlcd
+    lcd_gotoxy(0, 1);
+    sprintf(buf, "Vlcd:%d", vlcd);
+    lcd_puts(buf);
+}
+
+void main(void) {
+    GLCDINIT_t glcd_init_data;
+
+    DDRB = 0x00;   // Port B la dau va
+    PORTB = 0x07;  // Bat dien tro keo len cho PINB.0, PINB.1, PINB.2
+
+    lcd_init(16);  // Khoi tao LCD 16x2
+    display_lcd();
+
+    while (1) {
+        // Nut BT-1: Thay doi Bias tu 1 den 5
+        if (BT1 == 0) {
+            delay_ms(20);
+            if (BT1 == 0) {
+                bias++;
+                if (bias > 5) bias = 1;
+                display_lcd();
+                while (BT1 == 0); // Cho nha nut
+            }
+        }
+
+        // Nut BT-2: Thay doi temp_coef tu 40 den 120 (moi lan 5 gia tri)
+        if (BT2 == 0) {
+            delay_ms(20);
+            if (BT2 == 0) {
+                temp_coef += 5;
+                if (temp_coef > 120) temp_coef = 40;
+                display_lcd();
+                while (BT2 == 0);
+            }
+        }
+
+        // Nut BT-3: Thay doi vlcd (moi lan 5 gia tri)
+        if (BT3 == 0) {
+            delay_ms(20);
+            if (BT3 == 0) {
+                vlcd += 5;
+                if (vlcd > 90) vlcd = 30; // Gioi han khoang gia tri Vlcd
+                display_lcd();
+                while (BT3 == 0);
+            }
+        }
+    }
+}

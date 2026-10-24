@@ -1,0 +1,183 @@
+#include <io.h>
+#include <alcd.h>
+#include <delay.h>
+#include <stdio.h>
+#include <string.h>
+
+#define RELAY1 PORTC.0
+#define LCD_BL PORTD.7
+
+int keypad[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+eeprom char EE_PASS[5];
+char CURRENT_PASS[5];
+
+// Quét 1 phím t? bàn phím ma tr?n 3x3
+char scan_digit(void) {
+    unsigned char r;
+    int key;
+    
+    for (r = 0; r < 3; r++) {
+        if (r == 0) { PORTC = (PORTC & 0x0F) | 0x30; PORTE = 0x03; PORTD = 0x81; }
+        if (r == 1) { PORTC = (PORTC & 0x0F) | 0x70; PORTE = 0x01; PORTD = 0x81; }
+        if (r == 2) { PORTC = (PORTC & 0x0F) | 0x70; PORTE = 0x03; PORTD = 0x80; }
+
+        delay_us(10);
+
+        if ((PINC & 0x10) == 0) {
+            delay_ms(20);
+            if ((PINC & 0x10) == 0) {
+                key = keypad[r][0];
+                while ((PINC & 0x10) == 0) delay_ms(10);
+                return (char)('0' + key);
+            }
+        }
+        if ((PINC & 0x20) == 0) {
+            delay_ms(20);
+            if ((PINC & 0x20) == 0) {
+                key = keypad[r][1];
+                while ((PINC & 0x20) == 0) delay_ms(10);
+                return (char)('0' + key);
+            }
+        }
+        if ((PINE & 0x01) == 0) {
+            delay_ms(20);
+            if ((PINE & 0x01) == 0) {
+                key = keypad[r][2];
+                while ((PINE & 0x01) == 0) delay_ms(10);
+                return (char)('0' + key);
+            }
+        }
+    }
+    return 0;
+}
+
+// T?i m?t kh?u t? EEPROM, n?u chua có thì n?p "888"
+void load_pass(void) {
+    unsigned char i;
+    for (i = 0; i < 5; i++) CURRENT_PASS[i] = EE_PASS[i];
+    
+    // Ki?m tra tính h?p l? c?a d? li?u EEPROM
+    if (CURRENT_PASS[0] < '0' || CURRENT_PASS[0] > '9') {
+        strcpy(CURRENT_PASS, "888");
+        for (i = 0; i < 4; i++) EE_PASS[i] = CURRENT_PASS[i];
+    }
+}
+
+// Luu m?t kh?u m?i vào EEPROM
+void save_pass(char *new_pass) {
+    unsigned char i;
+    strcpy(CURRENT_PASS, new_pass);
+    for (i = 0; i < 5; i++) {
+        EE_PASS[i] = new_pass[i];
+    }
+}
+
+// Hàm nh?p chu?i m?t kh?u v?i hi?u ?ng che d?u *
+// Ðã s?a: flash char *title
+void input_password(char *out_buf, char max_len, flash char *title) {
+    char idx = 0;
+    char d;
+    char disp[16] = "";
+
+    lcd_clear();
+    lcd_gotoxy(0, 0);
+    lcd_putsf(title);
+
+    while (idx < max_len) {
+        d = scan_digit();
+        if (d) {
+            out_buf[idx] = d;
+            
+            // Hi?n th? ký t? th?c trong 800ms
+            disp[idx] = d;
+            lcd_gotoxy(0, 1);
+            lcd_puts(disp);
+            delay_ms(800);
+            
+            // Chuy?n thành d?u *
+            disp[idx] = '*';
+            lcd_gotoxy(0, 1);
+            lcd_puts(disp);
+            
+            idx++;
+        }
+    }
+    out_buf[idx] = '\0';
+}
+
+// Quy trình d?i m?t kh?u
+void change_password_flow(void) {
+    char pass1[5], pass2[5];
+
+    while (1) {
+        input_password(pass1, 3, "NHAP MK MOI:");
+        input_password(pass2, 3, "XAC NHAN MK MOI:");
+
+        if (strcmp(pass1, pass2) == 0) {
+            save_pass(pass1);
+            lcd_clear();
+            lcd_putsf("THANH CONG!");
+            lcd_gotoxy(0, 1);
+            lcd_putsf("DA LUU EEPROM");
+            delay_ms(1500);
+            break;
+        } else {
+            lcd_clear();
+            lcd_putsf("MK KHONG KHOP!");
+            lcd_gotoxy(0, 1);
+            lcd_putsf("NHAP LAI TU DAU");
+            delay_ms(1500);
+        }
+    }
+}
+
+void main(void) {
+    char entered_pass[5];
+    char choice;
+
+    lcd_init(16);
+    DDRC = 0x4F;  PORTC = 0x70;
+    DDRE = 0x02;  PORTE = 0x03;
+    DDRD = 0x81;  PORTD = 0x81;
+    LCD_BL = 1;
+
+    load_pass();
+
+    while (1) {
+        input_password(entered_pass, 3, "NHAP MAT KHAU:");
+
+        if (strcmp(entered_pass, CURRENT_PASS) == 0) {
+            lcd_clear();
+            lcd_putsf("DANG NHAP OK!");
+            delay_ms(1000);
+
+            // Menu l?a ch?n
+            lcd_clear();
+            lcd_putsf("1:DUNG MK CU");
+            lcd_gotoxy(0, 1);
+            lcd_putsf("2:DOI MK MOI");
+
+            choice = 0;
+            while (choice != '1' && choice != '2') {
+                choice = scan_digit();
+            }
+
+            if (choice == '2') {
+                change_password_flow();
+            } else {
+                lcd_clear();
+                lcd_putsf("TIEP TUC SU DUNG");
+                delay_ms(1500);
+            }
+        } else {
+            lcd_clear();
+            lcd_putsf("SAI MAT KHAU!");
+            delay_ms(1500);
+        }
+    }
+}

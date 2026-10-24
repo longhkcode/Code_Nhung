@@ -1,0 +1,51 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+keypad                                                                            0x0500      18
+DEF_PASS                                                                          0x0512      15
+PASS_ADMIN                                                                        0x0521       5
+PASS_MOD                                                                          0x0526       5
+PASS_USER                                                                         0x052B       5
+input                                                                             0x0530       5
+disp                                                                              0x0535       5
+_base_y                                                                           0x053A       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+EE_ADMIN                                                                          0x0000       5
+EE_MOD                                                                            0x0005       5
+EE_USER                                                                           0x000A       5
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+idx                                                                               R5           1
+_lcd_x                                                                            R4           1
+_lcd_y                                                                            R7           1
+_lcd_maxx                                                                         R6           1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+is_digit                                                                          0x000BD     11
+relays_off                                                                        0x000C8      5
+apply_admin                                                                       0x000CD      4
+apply_moderator                                                                   0x000D1      3
+apply_user                                                                        0x000D4      3
+show_pass_screen                                                                  0x000D7     16
+reset_pass                                                                        0x000E7     27
+load_passwords_from_eeprom                                                        0x00102    169
+scan_digit                                                                        0x001AB    106
+handle_digit                                                                      0x00215     88
+main                                                                              0x0026D     27
+_lcd_write_nibble_G100                                                            0x00288     37
+_lcd_write_data                                                                   0x002AD     12
+lcd_gotoxy                                                                        0x002B9     13
+lcd_clear                                                                         0x002C6     12
+lcd_putchar                                                                       0x002D2     21
+lcd_puts                                                                          0x002E7     15
+lcd_putsf                                                                         0x002F6     19
+lcd_init                                                                          0x00309     45
+strcmp                                                                            0x00336     20
+strcpy                                                                            0x0034A     13

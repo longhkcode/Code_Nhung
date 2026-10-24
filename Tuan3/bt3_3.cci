@@ -1,0 +1,7 @@
+VERSION:3 SOURCE_TIMESTAMP:5D43A802
+NODE:I LEVEL:0 LINE:8 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\io.h"
+NODE:I LEVEL:0 LINE:9 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:V LEVEL:0 LINE:10 "mode -> R4,R5"
+NODE:F LEVEL:0 LINE:11 "hienthi(int i,unsigned char select_mask)"
+NODE:F LEVEL:0 LINE:24 "updateDisplay(void)"
+NODE:F LEVEL:0 LINE:30 "main(void)"

@@ -1,0 +1,17 @@
+/*
+ * bth3_3_CatotChung.c
+ *
+ * Created: 10/3/2026 9:27:07 PM
+ * Author: Admin
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}

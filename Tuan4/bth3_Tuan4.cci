@@ -1,0 +1,8 @@
+VERSION:3 SOURCE_TIMESTAMP:5D43B4CC
+NODE:I LEVEL:0 LINE:1 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\io.h"
+NODE:I LEVEL:0 LINE:2 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\alcd.h"
+NODE:I LEVEL:0 LINE:3 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:M LEVEL:0 LINE:5 "BT1"
+NODE:V LEVEL:0 LINE:7 "page -> R5"
+NODE:F LEVEL:0 LINE:9 "display_page(unsigned char p)"
+NODE:F LEVEL:0 LINE:39 "main(void)"

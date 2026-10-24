@@ -1,0 +1,11 @@
+VERSION:3 SOURCE_TIMESTAMP:5D4B38BA
+NODE:I LEVEL:0 LINE:1 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\io.h"
+NODE:I LEVEL:0 LINE:2 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\alcd.h"
+NODE:I LEVEL:0 LINE:3 "F:\KTMT\robot_new\robot_new\Code_vison_32\inc\delay.h"
+NODE:M LEVEL:0 LINE:4 "PIN_DHT"
+NODE:M LEVEL:0 LINE:5 "PORT_DHT"
+NODE:M LEVEL:0 LINE:6 "DDR_DHT"
+NODE:V LEVEL:0 LINE:7 "nhietdo -> R5"
+NODE:V LEVEL:0 LINE:7 "doam -> R4"
+NODE:F LEVEL:0 LINE:8 "dht11(unsigned char * t,unsigned char * rh)"
+NODE:F LEVEL:0 LINE:43 "main(void)"

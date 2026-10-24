@@ -1,0 +1,17 @@
+/*
+ * bt6_2.c
+ *
+ * Created: 10/3/2026 11:31:48 PM
+ * Author: Admin
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}

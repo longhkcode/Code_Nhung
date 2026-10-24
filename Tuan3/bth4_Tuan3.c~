@@ -1,0 +1,17 @@
+/*
+ * bth4_Tuan3.c
+ *
+ * Created: 10/3/2026 9:19:19 PM
+ * Author: Admin
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}

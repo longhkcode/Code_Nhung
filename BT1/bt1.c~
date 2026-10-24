@@ -1,0 +1,72 @@
+/*
+ * bt1.c
+ * viet chuong trình bat den led xanh la cay ket noi PD5
+ phân tích bài toán
+ tra bang 1.2 -> LED_G noi chan 30 ki hieu : PD5 (PORT D, bit 5)
+ De LED sang , du lieu phai di tu chip ra PD5 vào LED  => la output
+ De PD5 la output -> DDR tai PD5 = 1  
+ Do LED noi katot vao GND -> LED sang thi phai tac dong output logic HIGH = "1" -> Dien ap = "+5V"   (hình 1.5)
+ De tac dong ta ghi "DDRD.5 = 1;"
+ DDRD.5 la tac dong thanh ghi DDR vao Port D tai bit 5 (tac dong truc tiep)
+ !Chu y : con cach khac tac dong len toan bo Port 
+ */ 
+/* 
+#include <io.h>
+#include <delay.h>
+void main(void)
+{
+DDRD.4 = 1;
+DDRD.5 = 1;
+DDRD.6 = 1;
+DDRD.7 = 1;
+PORTD.7 = 1;
+while (1)
+    { 
+         PORTD.4 = 1;
+         delay_ms(1000);
+         PORTD.4 = 0;
+         delay_ms(1000);
+         PORTD.5 = 1; 
+         delay_ms(1000); 
+         PORTD.5 = 0;
+         delay_ms(1000);   
+         PORTD.6 = 1; 
+         delay_ms(1000);
+         PORTD.6 = 0;
+         delay_ms(1000);
+    }
+}
+*/
+
+// d?c vào tr?ng thái 3 nút b?m m?i nút b?m là 1 màu và t?i 1 th?i di?m ch? có 1 dèn sáng
+#include <mega128.h>
+#include <delay.h>
+
+#define bt1 PINB.0
+#define bt2 PINB.2
+#define bt3 PINB.3
+
+#define led_R PORTD.4
+#define led_G PORTD.5
+#define led_B PORTD.6
+void io_init(void){
+    DDRD = 0b01110000;
+    DDRB = 0x00;
+    PORTD = 0x00;
+    PORTB = 0x0D;
+}
+void ledOff(void){
+    led_R = 0;
+    led_G = 0;
+    led_B = 0;
+}
+void main(void){
+    io_init();
+    while(1){
+        if(bt1 == 0){ledOff();led_G = 1;}
+        else if (bt2 == 0){ledOff();led_B = 1;}
+        else if (bt3 == 0){ledOff();led_R = 1;}
+        else{ledOff();}
+        delay_ms(10);
+    }
+}
